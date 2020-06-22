@@ -1,0 +1,6 @@
+@media (prefers-color-scheme: dark) {
+  :root {
+    --primary-color: black;
+    --secondary-color: black;
+  }
+}

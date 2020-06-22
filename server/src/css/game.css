@@ -1,0 +1,32 @@
+.game {
+  display: flex;
+  width: 80%;
+  /* border: solid 1px black; */
+  justify-content: space-around;
+  align-items: center;
+}
+.game img {
+  width: 300px;
+}
+.game div h2,
+.game div h3 {
+  padding-top: 20px;
+}
+.country {
+  font-size: x-large;
+}
+.city {
+  font-size: large;
+}
+.game div {
+  background: #f3d250;
+  padding: 40px 35px;
+  display: inline-block;
+  border-radius: 10px;
+  transition: all 0.5s ease-in-out;
+  cursor: pointer;
+}
+.game div:hover {
+  box-shadow: 0px 0px 123px -9px rgba(0, 0, 0, 0.75);
+  transform: scale(1.05);
+}

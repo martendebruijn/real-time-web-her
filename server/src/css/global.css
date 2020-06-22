@@ -1,0 +1,40 @@
+body {
+  font-family: 'Roboto', sans-serif;
+}
+/* lay-out */
+header {
+  background: var(--neutral-grey);
+  padding: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: 0 4px 7px -3px rgba(0, 0, 0, 0.2);
+  position: relative;
+  z-index: 1;
+}
+main > section:first-of-type {
+  display: flex;
+}
+.leaderboard {
+  padding: 15px;
+}
+.game {
+  padding: 15px;
+}
+.chat {
+  padding: 15px;
+}
+footer {
+  background: var(--neutral-grey);
+  padding: 15px;
+}
+
+/* headers and text */
+h1 {
+  font-size: medium;
+  font-weight: 700;
+}
+h2 {
+  font-size: medium;
+  font-weight: 500;
+}

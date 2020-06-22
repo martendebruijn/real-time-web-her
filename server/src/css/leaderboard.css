@@ -1,0 +1,17 @@
+.leaderboard {
+  width: 20%;
+}
+.leaderboard ul li {
+  display: flex;
+}
+.leaderboard > h2,
+.leaderboard > h3 {
+  padding-bottom: 15px;
+}
+#users li p {
+  width: 10%;
+  overflow: hidden;
+}
+#users li h3 {
+  width: 80%;
+}

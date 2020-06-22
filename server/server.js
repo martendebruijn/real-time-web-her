@@ -15,7 +15,9 @@ app
   .set('views', __dirname + '/views/')
   .set('view engine', 'ejs')
   .get('/', router.home)
-  .get('/chat', router.chat);
+  .get('/chat', router.chat)
+  .get('/design', router.design)
+  .get('/front', router.front);
 
 const server = app.listen(port, () =>
   console.log(`App listening on port ${port}`)

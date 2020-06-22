@@ -6,14 +6,11 @@ const gulp = require('gulp'),
   terser = require('gulp-terser');
 
 const jsFiles = ['./server/src/js/*.js'],
-  cssFiles = ['./server/src/css/*.css', '!./server/src/css/reset.css'];
-
-function cssReset() {
-  return gulp
-    .src('./server/src/css/reset.css')
-    .pipe(cleanCSS())
-    .pipe(gulp.dest('./server/public/dist/'));
-}
+  cssFiles = [
+    './server/src/css/reset.css',
+    './server/src/css/themes/*.css',
+    './server/src/css/*.css',
+  ];
 function css() {
   return gulp
     .src(cssFiles)
@@ -33,7 +30,7 @@ function watch() {
   gulp.watch(cssFiles, css);
   gulp.watch(jsFiles, es);
 }
-const build = gulp.series(cssReset, css, es);
+const build = gulp.series(css, es);
 
 exports.css = css;
 exports.es = es;
