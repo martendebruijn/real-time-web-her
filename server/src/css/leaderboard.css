@@ -1,8 +1,14 @@
 .leaderboard {
   width: 20%;
+  background: var(--neutral-grey);
 }
 .leaderboard ul li {
   display: flex;
+  align-items: center;
+  background: var(--red-color);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin-bottom: 12px;
 }
 .leaderboard > h2,
 .leaderboard > h3 {
@@ -10,7 +16,10 @@
 }
 #users li p {
   width: 10%;
-  overflow: hidden;
+  font-weight: 700;
+}
+#users li p:first-of-type {
+  padding-right: 10px;
 }
 #users li h3 {
   width: 80%;
