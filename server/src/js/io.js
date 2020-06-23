@@ -1,11 +1,13 @@
 const chatForm = document.getElementById('chat-form'),
   chatMessages = document.querySelector('.chat-messages'),
   roomName = document.getElementById('room-name'),
-  userslist = document.getElementById('users');
+  userslist = document.getElementById('users'),
+  answerForm = document.getElementById('answer-form');
 
 const socket = io();
 
 // TODO: don't send empty messages
+// TODO: don't send 'welcome user' everytime a user gives an answer
 
 const parameters = window.location.search;
 const urlParams = new URLSearchParams(parameters);
@@ -40,6 +42,18 @@ chatForm.addEventListener('submit', (e) => {
   // Clear input
   msg.value = '';
   msg.focus();
+});
+
+// Answer submit
+answerForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const cityone = e.target.elements[2].checked,
+    citytwo = e.target.elements[3].checked;
+
+  console.log({ cityone, citytwo });
+
+  // Emit answer to server
+  socket.emit('answerMessage', { cityone, citytwo });
 });
 
 // Output message to DOM

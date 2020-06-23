@@ -58,6 +58,33 @@ io.on('connection', (socket) => {
     const user = users.getCurrentUser(socket.id);
     io.to(user.room).emit('message', message.formatMessage(user.username, msg));
   });
+  // Listen for answer
+  socket.on('answerMessage', (answer) => {
+    const user = users.getCurrentUser(socket.id);
+    if (answer.cityone) {
+      console.log('user choose city 1');
+      // TODO: add the names of the cities
+      const msg = `${user.username} heeft gekozen voor city one`;
+      io.to(user.room).emit(
+        'message',
+        message.formatMessage(user.username, msg)
+      );
+    } else if (answer.citytwo) {
+      console.log('user choose city 2');
+      const msg = `${user.username} heeft gekozen voor city two`;
+      io.to(user.room).emit(
+        'message',
+        message.formatMessage(user.username, msg)
+      );
+    } else {
+      console.log('no answer given');
+      const msg = `${user.username} heeft gekozen voor niks`;
+      io.to(user.room).emit(
+        'message',
+        message.formatMessage(user.username, msg)
+      );
+    }
+  });
   // Runs when client disconnects
   socket.on('disconnect', () => {
     const user = users.userLeave(socket.id);

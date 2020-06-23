@@ -1,7 +1,7 @@
 .game {
   width: 80%;
 }
-.game form {
+.game form div {
   display: flex;
   justify-content: space-around;
   align-items: center;

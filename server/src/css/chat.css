@@ -28,7 +28,7 @@ input {
   flex-direction: column;
   align-items: flex-end;
   overflow: scroll;
-  height: 29vh;
+  height: 19vh;
   overflow: scroll;
 }
 .message {

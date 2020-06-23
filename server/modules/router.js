@@ -21,12 +21,17 @@ function home(req, res) {
   res.render('home', {});
 }
 function chat(req, res) {
+  const query = req.query;
+  const username = query.username,
+    room = query.room;
   // getWeather('Amersfoort');
-  const answerone = { temp: 27.21, name: 'Amsterdam' };
-  const answertwo = { temp: 20.34, name: 'Londen' };
+  const answerone = { temp: 27.21, name: 'Amsterdam' },
+    answertwo = { temp: 20.34, name: 'Londen' };
   res.render('chat', {
     questions,
     answers: { answerone, answertwo },
+    username,
+    room,
   });
 }
 
