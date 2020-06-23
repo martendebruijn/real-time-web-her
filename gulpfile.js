@@ -24,7 +24,7 @@ function es() {
     .src(jsFiles)
     .pipe(terser())
     .pipe(concat('all.js'))
-    .pipe(gulp.dest('./server/static/dist/'));
+    .pipe(gulp.dest('./server/public/dist/'));
 }
 function watch() {
   gulp.watch(cssFiles, css);

@@ -1,12 +1,18 @@
 <section class="game">
-    <div>
+    <form action="" method="GET">    
+    <input type="radio" name="answer" id="cityone">
+    <label for="cityone">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" alt="">
-        <h2 class="country">Nederland</h2>
-        <h3 class="city">Amsterdam</h3>
-    </div>
-    <div>
+        <h2 class="country"><%= questions.questionone.cityone.country %></h2>
+        <h3 class="city"><%= questions.questionone.cityone.city %></h3>
+    </label>
+    <input type="radio" name="answer" id="citytwo">
+    <label for="citytwo">
         <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" alt="">
-        <h2 class="country">Nederland</h2>
-        <h3 class="city">Amsterdam</h3>
-    </div>
+        <h2 class="country"><%= questions.questionone.citytwo.country %></h2>
+        <h3 class="city"><%= questions.questionone.citytwo.city %></h3>
+    </label>
+    <!-- <input type="submit" value="sub"> -->
+    <!-- TODO: submit answer with username and room -->
+</form>
 </section>

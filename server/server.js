@@ -2,12 +2,13 @@ require('dotenv').config();
 const express = require('express'),
   router = require('./modules/router.js'),
   socketio = require('socket.io'),
-  port = process.env.PORT || 3000,
   path = require('path'),
-  app = express(),
   message = require('./modules/messages.js'),
-  botName = 'Admin',
   users = require('./modules/users.js');
+
+const port = process.env.PORT || 3000,
+  app = express(),
+  botName = 'Admin';
 
 app
   .use(express.static(path.join(__dirname, 'public')))
@@ -15,9 +16,7 @@ app
   .set('views', __dirname + '/views/')
   .set('view engine', 'ejs')
   .get('/', router.home)
-  .get('/chat', router.chat)
-  .get('/design', router.design)
-  .get('/front', router.front);
+  .get('/chat', router.chat);
 
 const server = app.listen(port, () =>
   console.log(`App listening on port ${port}`)
@@ -28,8 +27,9 @@ const io = socketio.listen(server);
 io.on('connection', (socket) => {
   socket.on('joinRoom', ({ username, room }) => {
     const user = users.userJoin(socket.id, username, room);
-
     socket.join(user.room);
+    console.log(room);
+    console.log(user.room);
 
     // Welcome current user
     socket.emit(
@@ -46,8 +46,9 @@ io.on('connection', (socket) => {
       );
 
     // Send users and room info
+
     io.to(user.room).emit('roomUsers', {
-      room: users.room,
+      room: user.room,
       users: users.getRoomUsers(user.room),
     });
   });
@@ -68,7 +69,7 @@ io.on('connection', (socket) => {
 
       // Send users and room info
       io.to(user.room).emit('roomUsers', {
-        room: users.room,
+        room: user.room,
         users: users.getRoomUsers(user.room),
       });
     }

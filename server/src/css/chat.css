@@ -28,12 +28,18 @@ input {
   flex-direction: column;
   align-items: flex-end;
   overflow: scroll;
+  height: 29vh;
+  overflow: scroll;
 }
 .message {
   padding: 15px;
   background: #90ccf4;
   margin-bottom: 15px;
   width: fit-content;
+}
+.message div {
+  display: flex;
+  justify-content: space-between;
 }
 .message-user {
   border-radius: 10px 10px 10px 0;

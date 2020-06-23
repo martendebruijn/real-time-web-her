@@ -5,6 +5,8 @@ const chatForm = document.getElementById('chat-form'),
 
 const socket = io();
 
+// TODO: don't send empty messages
+
 const parameters = window.location.search;
 const urlParams = new URLSearchParams(parameters);
 const username = urlParams.get('username'),
@@ -47,10 +49,14 @@ function outputMessage(message) {
     time = message.time,
     div = document.createElement('div');
   div.classList.add('message');
-  div.innerHTML = ` <p class="meta">${username} <span>${time}</span></p>
-  <p class="text">
-    ${text}
-  </p>`;
+  div.classList.add('message-user');
+  div.innerHTML = `
+  <div>
+  <span class="username">${username}</span>
+  <span class="time">${time}</span>
+  </div>
+  <p>${text}</p>
+`;
   chatMessages.appendChild(div);
 }
 
@@ -61,6 +67,7 @@ function outputRoomName(room) {
 // Output users to DOM
 function outputUsers(users) {
   userslist.innerHTML = `
-    ${users.map((user) => `<li>${user.username}</li>`).join('')}
-    `;
+    ${users
+      .map((user) => `<li> <p>1.</p> <h3>${user.username}</h3> <p>20</p> </li>`)
+      .join('')}`;
 }
