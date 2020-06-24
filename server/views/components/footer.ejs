@@ -1,7 +1,7 @@
 <footer><p>Real Time Web 2020 - <span> Marten de Bruijn </span></p></footer>
 <script>
     if('serviceWorker' in navigator) {
-  navigator.serviceWorker.register('/serviceWorker.js')
+  navigator.serviceWorker.register('/sw.js')
   .then((reg) => console.log('service worker registered', reg))
   .catch((err) => console.log('service worker NOT registered', err))
 }
