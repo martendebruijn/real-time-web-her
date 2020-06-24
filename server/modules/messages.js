@@ -21,8 +21,11 @@ function formatQuestion(username, cityOne, cityTwo, n) {
 }
 
 function getCurrentTime() {
-  // TODO: add formating when there are zeros -> 11:10 instead of 11:1
   const today = new Date();
-  const time = today.getHours() + ':' + today.getMinutes();
+  const time =
+    today.getHours() +
+    ':' +
+    (today.getMinutes() < 10 ? '0' : '') +
+    today.getMinutes();
   return time;
 }
