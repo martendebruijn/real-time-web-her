@@ -1,4 +1,11 @@
 <footer><p>Real Time Web 2020 - <span> Marten de Bruijn </span></p></footer>
+<script>
+    if('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('/serviceWorker.js')
+  .then((reg) => console.log('service worker registered', reg))
+  .catch((err) => console.log('service worker NOT registered', err))
+}
+</script>
 <script src="/socket.io/socket.io.js"></script>
 <script src="dist/all.js"></script>
 </body>
