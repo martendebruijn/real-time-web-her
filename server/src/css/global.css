@@ -1,5 +1,9 @@
+html {
+  height: 100%;
+}
 body {
   font-family: 'Roboto', sans-serif;
+  min-height: 100%;
   overflow: hidden;
   display: grid;
   grid-template-rows: 1fr 13fr 1fr;
@@ -31,6 +35,9 @@ footer {
   background: var(--neutral-grey);
   padding: var(--default-padding);
 }
+footer p span {
+  font-weight: 500;
+}
 
 /* headers and text */
 h1 {
@@ -58,8 +65,8 @@ button,
   font-size: 13.3333px;
 }
 
-button span,
-.btn span {
+button span.material-icons,
+.btn span.material-icons {
   margin-left: 25px;
   background: rgb(236, 240, 243);
   border-radius: 35px;
@@ -73,4 +80,57 @@ footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+@media only screen and (max-height: 812px) {
+  .btn,
+  button {
+    padding: 5px;
+  }
+  button span.desktop,
+  .btn span,
+  .leaderboard h2:first-of-type,
+  #room-name {
+    display: none;
+  }
+  button span.mobile,
+  .btn span.material-icons,
+  button span.material-icons {
+    display: inline-block;
+    margin-left: 0;
+    background: none;
+  }
+  header,
+  main,
+  footer {
+    width: calc(100% - 30px);
+  }
+  main {
+    display: block;
+  }
+  main .leaderboard {
+    width: 100%;
+  }
+  #users li p,
+  #users li h3 {
+    width: auto;
+  }
+  .leaderboard ul#users li {
+    align-items: baseline;
+    margin-bottom: 0;
+  }
+  #users {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  .chat {
+    width: 100%;
+    height: 73%;
+  }
+  #msg {
+    margin-right: 15px;
+  }
+  .chat-messages {
+    max-height: 51vh;
+  }
 }
