@@ -1,5 +1,6 @@
 module.exports = {
   formatMessage,
+  formatQuestion,
 };
 
 function formatMessage(username, text) {
@@ -7,6 +8,15 @@ function formatMessage(username, text) {
     username,
     text,
     time: getCurrentTime(),
+  };
+}
+function formatQuestion(username, cityOne, cityTwo, n) {
+  return {
+    username,
+    cityOne,
+    cityTwo,
+    time: getCurrentTime(),
+    n: n,
   };
 }
 

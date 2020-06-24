@@ -1,17 +1,13 @@
-.game {
-  width: 80%;
-}
-/* TODO: make answer-form a class instead of an ID */
-#answer-form {
+.questionForms {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
-#answer-form img {
+.questionForms img {
   width: 300px;
 }
-#answer-form label h2,
-#answer-form label h3 {
+.questionForms label h2,
+.questionForms label h3 {
   padding-top: 20px;
 }
 .country {
@@ -20,7 +16,7 @@
 .city {
   font-size: large;
 }
-#answer-form label {
+.questionForms label {
   background: var(--primary-color);
   padding: 40px 35px;
   display: inline-block;
@@ -37,19 +33,19 @@ input[type='radio'] {
   position: absolute;
   left: -100vw;
 }
-#answer-form input[type='radio']:checked + label {
+.questionForms input[type='radio']:checked + label {
   background: var(--dark-accent);
 }
-#answer-form input[type='radio'] + label + input[type='submit'] {
+.questionForms input[type='radio'] + label + button[type='submit'] {
   display: none;
 }
-#answer-form input[type='radio']:checked + label + input[type='submit'],
-#answer-form
+.questionForms input[type='radio']:checked + label + button[type='submit'],
+.questionForms
   input[type='radio']:checked
   + label
   + input[type='radio']
   + label
-  + input[type='submit'] {
+  + button[type='submit'] {
   display: inline-block;
 }
 .question_submit {

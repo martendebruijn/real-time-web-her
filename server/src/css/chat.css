@@ -40,7 +40,8 @@ input {
   margin-bottom: 15px;
   width: fit-content;
 }
-.message div {
+.message div,
+label div {
   display: flex;
   justify-content: space-between;
 }

@@ -5,6 +5,9 @@ body {
   grid-template-rows: 1fr 13fr 1fr;
   height: 100vh;
 }
+button {
+  font-family: Roboto, sans-serif;
+}
 /* lay-out */
 header {
   background: var(--neutral-grey);

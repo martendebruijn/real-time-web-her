@@ -2,8 +2,7 @@ const chatForm = document.getElementById('chat-form'),
   chatMessages = document.querySelector('.chat-messages'),
   roomName = document.getElementById('room-name'),
   userslist = document.getElementById('users'),
-  newQuestionForm = document.getElementById('newQuestionForm'),
-  answerForm = document.getElementById('answer-form');
+  newQuestionForm = document.getElementById('newQuestionForm');
 
 const socket = io();
 
@@ -32,6 +31,14 @@ socket.on('message', (message) => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 
+// Question from server
+socket.on('question', (question) => {
+  outputQuestion(question);
+
+  // Scroll down
+  chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+
 // Message submit
 chatForm.addEventListener('submit', (e) => {
   e.preventDefault();
@@ -49,19 +56,6 @@ chatForm.addEventListener('submit', (e) => {
 newQuestionForm.addEventListener('submit', (e) => {
   e.preventDefault();
   socket.emit('newQuestion');
-});
-
-// Listen for answer
-answerForm.addEventListener('submit', (e) => {
-  e.preventDefault();
-  const cityone = e.target.elements[2].checked,
-    citytwo = e.target.elements[3].checked;
-
-  if (cityone) {
-    socket.emit('answerGiven', 'cityone');
-  } else if (citytwo) {
-    socket.emit('answerGiven', 'citytwo');
-  }
 });
 
 // Output message to DOM
@@ -83,11 +77,47 @@ function outputMessage(message) {
 }
 
 // Output question to DOM
-function outputQuestion(message) {
-  const username = message.username,
-    city = message.text,
-    time = message.time,
+function outputQuestion(question) {
+  const username = question.username,
+    cityOne = question.cityOne,
+    cityTwo = question.cityTwo,
+    time = question.time,
+    n = question.n,
     div = document.createElement('div');
+  div.innerHTML = `
+    <form action="" method="GET" id="questionForm${n}" class="questionForms">  
+        <input type="text" hidden value="<%= username  %> " name="username">
+        <input type="text" hidden value="<%= room  %> " name="room">
+        <input type="radio" name="answer" id="cityone${n}">
+        <label for="cityone${n}">
+            <div>
+                <span class="username">${username}</span>
+                <span class="time">${time}</span>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" alt="">
+            <h2 class="country">Nederland</h2>
+            <h3 class="city">Amsterdam</h3>
+        </label>
+        <input type="radio" name="answer" id="citytwo${n}">
+        <label for="citytwo${n}">
+            <div>
+                <span class="username">${username}</span>
+                <span class="time">${time}</span>
+            </div>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" alt="">
+            <h2 class="country">Verenigd Koninkrijk</h2>
+            <h3 class="city">Londen</h3>
+        </label>
+        <button type="submit" class="question_submit">
+            <div>
+                <span class="username">${username}</span>
+                <span class="time">${time}</span>
+            </div>
+            <p>Bevestig antwoord</p>
+        </button>
+        </form>
+    `;
+  chatMessages.appendChild(div);
 }
 
 // Output room name to DOM

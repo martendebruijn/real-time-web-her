@@ -6,13 +6,19 @@ const express = require('express'),
   message = require('./modules/messages.js'),
   users = require('./modules/users.js'),
   questions = require('./modules/questions.js');
-const { getRoomUsers, getCurrentUser } = require('./modules/users.js');
 
 const port = process.env.PORT || 3000,
   app = express(),
-  botName = 'Admin';
+  botName = 'Weerman';
 
 const userAnswers = [];
+let questionCount = [
+  { game: 'game1', question: 0 },
+  { game: 'game2', question: 0 },
+  { game: 'game3', question: 0 },
+];
+
+// TODO: Prevent multiple submits and submits from old questions
 
 app
   .use(express.static(path.join(__dirname, 'public')))
@@ -67,15 +73,22 @@ io.on('connection', (socket) => {
     const user = users.getCurrentUser(socket.id),
       cityone = questions.questions.questionone.cityone.city,
       citytwo = questions.questions.questionone.citytwo.city;
-
-    // answer:
-    // questions.getWeather(cityone)
-    // questions.getWeather(citytwo)
     io.to(user.room).emit(
       'message',
       message.formatMessage(botName, 'new question...')
     );
+
+    const questionIndex = questionCount.findIndex(
+      (item) => item.game === user.room
+    );
+    const q = questionCount[questionIndex].question;
+    io.to(user.room).emit(
+      'question',
+      message.formatQuestion(botName, cityone, citytwo, q)
+    );
+    questionCount[questionIndex].question++;
   });
+
   // Listen for answer
   socket.on('answerGiven', async (answer) => {
     const user = users.getCurrentUser(socket.id),
@@ -112,7 +125,7 @@ io.on('connection', (socket) => {
       : (users.users[userIndex].score = users.users[userIndex].score);
 
     // Check if everyone has given an answer
-    const amountOfUsers = getRoomUsers(user.room).length;
+    const amountOfUsers = users.getRoomUsers(user.room).length;
     const roomIndex = userAnswers.findIndex((item) => item[user.room]);
     const amountOfAnswers = userAnswers[roomIndex][user.room].length;
     if (amountOfUsers === amountOfAnswers) {
@@ -125,6 +138,9 @@ io.on('connection', (socket) => {
         room: user.room,
         users: users.getRoomUsers(user.room),
       });
+      // Reset answers array for room
+      userAnswers[roomIndex][user.room] = [];
+      console.log(userAnswers);
     }
   });
   function getRightAnswer(cityOne, cityTwo) {
@@ -187,3 +203,16 @@ io.on('connection', (socket) => {
     }
   });
 });
+// Listen for answer
+// answerForm.addEventListener('submit', (e) => {
+//   e.preventDefault();
+//   const cityone = e.target.elements[2].checked,
+//     citytwo = e.target.elements[3].checked;
+
+//   if (cityone) {
+//     socket.emit('answerGiven', 'cityone');
+//   } else if (citytwo) {
+//     socket.emit('answerGiven', 'citytwo');
+//   }
+// });
+// answerForm = document.getElementById('answer-form');
