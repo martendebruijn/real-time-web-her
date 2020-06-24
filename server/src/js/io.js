@@ -2,12 +2,10 @@ const chatForm = document.getElementById('chat-form'),
   chatMessages = document.querySelector('.chat-messages'),
   roomName = document.getElementById('room-name'),
   userslist = document.getElementById('users'),
-  newQuestionForm = document.getElementById('newQuestionForm');
+  newQuestionForm = document.getElementById('newQuestionForm'),
+  newQuestionFormSubmit = document.getElementById('newQuestionForm_submit');
 
 const socket = io();
-
-// TODO: don't send empty messages
-// TODO: don't send 'welcome user' everytime a user gives an answer
 
 const parameters = window.location.search;
 const urlParams = new URLSearchParams(parameters);
@@ -35,8 +33,16 @@ socket.on('message', (message) => {
 socket.on('question', (question) => {
   outputQuestion(question);
 
+  // Prevent submitting new question form
+  newQuestionFormSubmit.setAttribute('disabled', true);
+
   // Scroll down
   chatMessages.scrollTop = chatMessages.scrollHeight;
+});
+
+// Dedisable new question form
+socket.on('dedisable', () => {
+  newQuestionFormSubmit.removeAttribute('disabled');
 });
 
 // Message submit
@@ -45,7 +51,9 @@ chatForm.addEventListener('submit', (e) => {
   let msg = e.target.elements.msg;
 
   // Emit message to server
-  socket.emit('chatMessage', msg.value);
+  if (msg.value.length !== 0) {
+    socket.emit('chatMessage', msg.value);
+  }
 
   // Clear input
   msg.value = '';
@@ -118,6 +126,19 @@ function outputQuestion(question) {
         </form>
     `;
   chatMessages.appendChild(div);
+  const form = document.getElementById(`questionForm${n}`);
+  // Listen for answer
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    const cityone = e.target.elements[2].checked,
+      citytwo = e.target.elements[3].checked;
+
+    if (cityone) {
+      socket.emit('answerGiven', 'cityone');
+    } else if (citytwo) {
+      socket.emit('answerGiven', 'citytwo');
+    }
+  });
 }
 
 // Output room name to DOM

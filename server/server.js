@@ -133,6 +133,7 @@ io.on('connection', (socket) => {
         'message',
         message.formatMessage(botName, 'everyone has answered')
       );
+      io.to(user.room).emit('dedisable');
       // Send users and room info
       io.to(user.room).emit('roomUsers', {
         room: user.room,
