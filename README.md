@@ -3,6 +3,7 @@
 <!-- screenshot applicatie -->
 <!-- Table of contents -->
 <!-- Usage -->
+<!-- Data life cycle diagram -->
 
 ## Dependencies
 
@@ -24,22 +25,22 @@
 
 ## NPM Scripts
 
-| NPM Script       | Task                                  | What it does                        |
-| ---------------- | ------------------------------------- | ----------------------------------- |
-| npm run prestart | gulp                                  | Build CSS and ES files before start |
-| npm start        | node server/server.js                 | Start app                           |
-| npm run dev      | gulp watch & nodemon server/server.js | Run app in development mode         |
-| npm run deploy   | git push heroku master                | Deploy to Heroku                    |
-| npm run logs     | heroku logs --tail                    | Heroku logs                         |
+| NPM Script         | Task                                    | What it does                        |
+| ------------------ | --------------------------------------- | ----------------------------------- |
+| `npm run prestart` | `gulp`                                  | Build CSS and ES files before start |
+| `npm start`        | `node server/server.js`                 | Start app                           |
+| `npm run dev`      | `gulp watch & nodemon server/server.js` | Run app in development mode         |
+| `npm run deploy`   | `git push heroku master`                | Deploy to Heroku                    |
+| `npm run logs`     | `heroku logs --tail`                    | Heroku logs                         |
 
 ## Gulp tasks
 
-| Gulp task              | Task                   |
-| ---------------------- | ---------------------- |
-| `gulp css`             | Build CSS files        |
-| gulp es                | Build ES files         |
-| gulp watch             | Watch CSS and ES files |
-| gulp build **or** gulp | Build CSS and ES files |
+| Gulp task                  | Task                   |
+| -------------------------- | ---------------------- |
+| `gulp css`                 | Build CSS files        |
+| `gulp es`                  | Build ES files         |
+| `gulp watch`               | Watch CSS and ES files |
+| `gulp build` **or** `gulp` | Build CSS and ES files |
 
 ## Socket events
 
