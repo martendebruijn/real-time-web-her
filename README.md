@@ -36,7 +36,7 @@
 
 | Gulp task              | Task                   |
 | ---------------------- | ---------------------- |
-| gulp css               | Build CSS files        |
+| `gulp css`             | Build CSS files        |
 | gulp es                | Build ES files         |
 | gulp watch             | Watch CSS and ES files |
 | gulp build **or** gulp | Build CSS and ES files |
