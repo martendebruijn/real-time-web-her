@@ -48,7 +48,3 @@ button[type='submit'] {
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
 }
-button[type='submit']:hover {
-  background: #90ccf4;
-  transform: scale(1.1);
-}

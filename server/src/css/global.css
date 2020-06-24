@@ -5,9 +5,6 @@ body {
   grid-template-rows: 1fr 13fr 1fr;
   height: 100vh;
 }
-button {
-  font-family: Roboto, sans-serif;
-}
 /* lay-out */
 header {
   background: var(--neutral-grey);
@@ -43,4 +40,37 @@ h1 {
 h2 {
   font-size: medium;
   font-weight: 500;
+}
+/* buttons */
+button,
+.btn {
+  display: flex;
+  align-items: center;
+  font-family: Roboto, sans-serif;
+  background: #fff;
+  border: none;
+  border-radius: 30px;
+  padding: 5px 20px;
+  box-shadow: 0 4px 7px -3px rgba(0, 0, 0, 0.2);
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+  font-size: 13.3333px;
+}
+
+button span,
+.btn span {
+  margin-left: 25px;
+  background: rgb(236, 240, 243);
+  border-radius: 35px;
+}
+button:hover,
+.btn:hover {
+  transform: scale(1.05);
+  transition: all 0.5s ease-in-out;
+}
+footer {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
 }

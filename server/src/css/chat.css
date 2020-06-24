@@ -24,6 +24,7 @@
 #chat-form button span {
   padding-left: 4px;
   font-size: medium;
+  background: none;
 }
 #chat-form {
   display: flex;

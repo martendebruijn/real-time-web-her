@@ -5,7 +5,8 @@ const express = require('express'),
   path = require('path'),
   message = require('./modules/messages.js'),
   users = require('./modules/users.js'),
-  questions = require('./modules/questions.js');
+  questions = require('./modules/questions.js'),
+  compression = require('compression');
 
 const port = process.env.PORT || 3000,
   app = express(),
@@ -23,6 +24,7 @@ let questionCount = [
 app
   .use(express.static(path.join(__dirname, 'public')))
   .use(express.urlencoded({ extended: true }))
+  .use(compression())
   .set('views', __dirname + '/views/')
   .set('view engine', 'ejs')
   .get('/', router.home)
@@ -44,7 +46,7 @@ io.on('connection', (socket) => {
     // Welcome current user
     socket.emit(
       'message',
-      message.formatMessage(botName, `Welcome ${user.username}!`)
+      message.formatMessage(botName, `Welkom ${user.username}!`)
     );
 
     // Broadcast when a user connects
@@ -52,7 +54,10 @@ io.on('connection', (socket) => {
       .to(user.room)
       .emit(
         'message',
-        message.formatMessage(botName, `${user.username} has joined the chat.`)
+        message.formatMessage(
+          botName,
+          `${user.username} is de room binnengekomen.`
+        )
       );
 
     // Send users and room info
@@ -81,7 +86,14 @@ io.on('connection', (socket) => {
 
     io.to(user.room).emit(
       'message',
-      message.formatMessage(botName, 'new question...')
+      message.formatMessage(botName, 'Hier is een nieuwe vraag...')
+    );
+    io.to(user.room).emit(
+      'message',
+      message.formatMessage(
+        botName,
+        'In welke stad is het momenteel warmer, denk je?'
+      )
     );
 
     io.to(user.room).emit(
