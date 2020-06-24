@@ -52,4 +52,6 @@
 
 # Sources
 
-- 📹 [Realtime Chat With Users & Rooms - Socket.io, Node & Express - Traversy Media - YouTube](https://www.youtube.com/watch?v=jD7FnbI76Hg)
+| Cat. | Title                                                        | Author         | Origin                                                 |
+| ---- | ------------------------------------------------------------ | -------------- | ------------------------------------------------------ |
+| 📹   | Realtime Chat With Users & Rooms - Socket.io, Node & Express | Traversy Media | [YouTube](https://www.youtube.com/watch?v=jD7FnbI76Hg) |
