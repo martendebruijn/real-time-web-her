@@ -7,7 +7,6 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: var(--primary-color);
 }
 #chat-form button {
   padding: 7px 16px;
