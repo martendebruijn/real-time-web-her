@@ -1,6 +1,16 @@
 @media (prefers-color-scheme: dark) {
   :root {
-    --primary-color: black;
-    --secondary-color: black;
+    --primary-color: #747474;
+    --accent-color: #14a76c;
+    --neutral-grey: #272727;
+    --dark-accent: #18405f;
+    --red-color: #ff652f;
+    --text-color: white;
+    --secondary-text-color: #272727;
+    --default-padding: 15px;
+  }
+  .btn,
+  button {
+    color: var(--secondary-text-color) !important;
   }
 }

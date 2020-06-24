@@ -7,11 +7,12 @@
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  background: var(--primary-color);
 }
 #chat-form button {
   padding: 7px 16px;
-  background: #90ccf4;
-  color: #000;
+  background: var(--accent-color);
+  color: var(--text-color);
   border-radius: 10px;
   transition: transform 0.2s ease-in-out;
   cursor: pointer;
@@ -19,7 +20,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  border: solid #90ccf4;
+  border: solid var(--accent-color);
 }
 #chat-form button span {
   padding-left: 4px;
@@ -37,7 +38,7 @@
 }
 .message {
   padding: 15px;
-  background: #90ccf4;
+  background: var(--accent-color);
   margin-bottom: 15px;
   width: fit-content;
 }
@@ -57,7 +58,7 @@ label div {
 }
 .time {
   font-size: small;
-  color: white;
+  color: var(--secondary-text-color);
   padding-left: 70px;
 }
 .message p {

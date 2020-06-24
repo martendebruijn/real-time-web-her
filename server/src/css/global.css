@@ -1,6 +1,7 @@
 html {
   height: 100%;
 }
+/* TODO: make mobile view for new questions better (flexbox and padding/margin) */
 body {
   font-family: 'Roboto', sans-serif;
   min-height: 100%;
@@ -8,6 +9,7 @@ body {
   display: grid;
   grid-template-rows: 1fr 13fr 1fr;
   height: 100vh;
+  color: var(--text-color);
 }
 /* lay-out */
 header {
@@ -38,7 +40,6 @@ footer {
 footer p span {
   font-weight: 500;
 }
-
 /* headers and text */
 h1 {
   font-size: medium;
@@ -61,7 +62,7 @@ button,
   box-shadow: 0 4px 7px -3px rgba(0, 0, 0, 0.2);
   cursor: pointer;
   text-decoration: none;
-  color: #000;
+  color: var(--text-color);
   font-size: 13.3333px;
 }
 
@@ -80,6 +81,9 @@ footer {
   display: flex;
   justify-content: flex-end;
   align-items: center;
+}
+.mobile {
+  display: none;
 }
 @media only screen and (max-height: 812px) {
   .btn,

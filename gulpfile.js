@@ -8,7 +8,8 @@ const gulp = require('gulp'),
 const jsFiles = ['./server/src/js/*.js'],
   cssFiles = [
     './server/src/css/reset.css',
-    './server/src/css/themes/*.css',
+    './server/src/css/themes/light.css',
+    './server/src/css/themes/dark.css',
     './server/src/css/*.css',
     '!./server/src/css/front.css',
   ];
@@ -22,7 +23,11 @@ function cssChat() {
 }
 function cssFront() {
   return gulp
-    .src('./server/src/css/front.css', './server/src/css/themes/*.css')
+    .src(
+      './server/src/css/front.css',
+      './server/src/css/themes/light.css',
+      './server/src/css/themes/dark.css'
+    )
     .pipe(concat('front.css'))
     .pipe(cleanCSS({ compatibility: 'ie8' }))
     .pipe(autoprefixer({ cascade: false }))

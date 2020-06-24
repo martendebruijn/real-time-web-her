@@ -14,9 +14,9 @@ const port = process.env.PORT || 3000,
 
 const userAnswers = [];
 let questionCount = [
-  { game: 'game1', question: 0 },
-  { game: 'game2', question: 0 },
-  { game: 'game3', question: 0 },
+  { game: 'Room 1', question: 0 },
+  { game: 'Room 2', question: 0 },
+  { game: 'Room 3', question: 0 },
 ];
 
 // TODO: prevent submits from old questions
@@ -42,6 +42,7 @@ io.on('connection', (socket) => {
     socket.join(user.room);
     console.log(room);
     console.log(user.room);
+    console.log(questionCount);
 
     // Welcome current user
     socket.emit(
@@ -79,7 +80,13 @@ io.on('connection', (socket) => {
     const questionIndex = questionCount.findIndex(
       (item) => item.game === user.room
     );
-    const q = questionCount[questionIndex].question;
+    console.log(`question index = ${questionIndex}`);
+    console.log(`questionCount = ${questionCount}`);
+    let q = questionCount[questionIndex].question;
+    if (q >= 4) {
+      questionCount[questionIndex].question = 0;
+      q = 0;
+    }
 
     const cityone = questions.questions[`question${q + 1}`].cityone,
       citytwo = questions.questions[`question${q + 1}`].citytwo;

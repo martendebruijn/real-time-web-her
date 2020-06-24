@@ -4,6 +4,8 @@
   --neutral-grey: #ececec;
   --dark-accent: #5da2d5;
   --red-color: #f78888;
+  --text-color: black;
+  --secondary-text-color: white;
   --default-padding: 15px;
 }
 * {
