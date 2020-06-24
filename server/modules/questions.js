@@ -8,13 +8,13 @@ const questions = {
       city: 'Amsterdam',
       country: 'Nederland',
       img:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/2/20/Flag_of_the_Netherlands.svg/1599px-Flag_of_the_Netherlands.svg.png',
     },
     citytwo: {
       city: 'Londen',
       country: 'Verenigd Koninkrijk',
       img:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/a/ae/Flag_of_the_United_Kingdom.svg/1600px-Flag_of_the_United_Kingdom.svg.png',
     },
   },
   question2: {
@@ -22,13 +22,13 @@ const questions = {
       city: 'Warschau',
       country: 'Polen',
       img:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/1/12/Flag_of_Poland.svg/2560px-Flag_of_Poland.svg.png',
     },
     citytwo: {
       city: 'Brussel',
       country: 'België',
       img:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/65/Flag_of_Belgium.svg/1920px-Flag_of_Belgium.svg.png',
     },
   },
   question3: {
@@ -36,13 +36,13 @@ const questions = {
       city: 'Moskou',
       country: 'Rusland',
       img:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/f/f3/Flag_of_Russia.svg/1920px-Flag_of_Russia.svg.png',
     },
     citytwo: {
       city: 'Tokyo',
       country: 'Japan',
       img:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/9/9e/Flag_of_Japan.svg/1599px-Flag_of_Japan.svg.png',
     },
   },
   question4: {
@@ -50,7 +50,7 @@ const questions = {
       city: 'Brasilia',
       country: 'Brazilië',
       img:
-        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+        'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
     },
     citytwo: {
       city: 'Nuuk',

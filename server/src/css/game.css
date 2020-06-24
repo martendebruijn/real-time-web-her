@@ -25,7 +25,7 @@
   cursor: pointer;
   margin-bottom: 20px;
 }
-.game label:hover {
+.questionForms label:hover {
   box-shadow: 0 0 45px -9px rgba(0, 0, 0, 0.75);
   transform: scale(1.05);
 }

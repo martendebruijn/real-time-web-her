@@ -18,7 +18,7 @@ let questionCount = [
   { game: 'game3', question: 0 },
 ];
 
-// TODO: submits from old questions
+// TODO: prevent submits from old questions
 
 app
   .use(express.static(path.join(__dirname, 'public')))
