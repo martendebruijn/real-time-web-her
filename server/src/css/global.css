@@ -1,12 +1,14 @@
 body {
   font-family: 'Roboto', sans-serif;
-  height: 100%;
   overflow: hidden;
+  display: grid;
+  grid-template-rows: 1fr 13fr 1fr;
+  height: 100vh;
 }
 /* lay-out */
 header {
   background: var(--neutral-grey);
-  padding: 15px;
+  padding: var(--default-padding);
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -14,22 +16,20 @@ header {
   position: relative;
   z-index: 1;
 }
-main > section:first-of-type {
+main {
   display: flex;
-  border-bottom: solid 0.3px var(--neutral-grey);
 }
 .leaderboard {
-  padding: 15px;
-}
-.game {
-  padding: 15px;
+  padding: var(--default-padding);
+  flex: 1;
 }
 .chat {
-  padding: 15px;
+  padding: var(--default-padding);
+  flex: 4;
 }
 footer {
   background: var(--neutral-grey);
-  padding: 15px;
+  padding: var(--default-padding);
 }
 
 /* headers and text */

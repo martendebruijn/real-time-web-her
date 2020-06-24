@@ -1,16 +1,17 @@
 .game {
   width: 80%;
 }
-.game form div {
+/* TODO: make answer-form a class instead of an ID */
+#answer-form {
   display: flex;
-  justify-content: space-around;
-  align-items: center;
+  flex-direction: column;
+  align-items: flex-start;
 }
-.game img {
+#answer-form img {
   width: 300px;
 }
-.game label h2,
-.game label h3 {
+#answer-form label h2,
+#answer-form label h3 {
   padding-top: 20px;
 }
 .country {
@@ -19,13 +20,14 @@
 .city {
   font-size: large;
 }
-.game label {
+#answer-form label {
   background: var(--primary-color);
   padding: 40px 35px;
   display: inline-block;
-  border-radius: 10px;
+  border-radius: 10px 10px 10px 0px;
   transition: all 0.5s ease-in-out;
   cursor: pointer;
+  margin-bottom: 20px;
 }
 .game label:hover {
   box-shadow: 0 0 45px -9px rgba(0, 0, 0, 0.75);
@@ -35,6 +37,27 @@ input[type='radio'] {
   position: absolute;
   left: -100vw;
 }
-input[type='radio']:checked + label {
+#answer-form input[type='radio']:checked + label {
   background: var(--dark-accent);
+}
+#answer-form input[type='radio'] + label + input[type='submit'] {
+  display: none;
+}
+#answer-form input[type='radio']:checked + label + input[type='submit'],
+#answer-form
+  input[type='radio']:checked
+  + label
+  + input[type='radio']
+  + label
+  + input[type='submit'] {
+  display: inline-block;
+}
+.question_submit {
+  padding: 15px;
+  background: var(--primary-color);
+  margin-bottom: 15px;
+  width: fit-content;
+  border-radius: 10px 10px 10px 0;
+  border: none;
+  cursor: pointer;
 }

@@ -10,11 +10,20 @@ const jsFiles = ['./server/src/js/*.js'],
     './server/src/css/reset.css',
     './server/src/css/themes/*.css',
     './server/src/css/*.css',
+    '!./server/src/css/front.css',
   ];
-function css() {
+function cssChat() {
   return gulp
     .src(cssFiles)
     .pipe(concat('styles.css'))
+    .pipe(cleanCSS({ compatibility: 'ie8' }))
+    .pipe(autoprefixer({ cascade: false }))
+    .pipe(gulp.dest('./server/public/dist/'));
+}
+function cssFront() {
+  return gulp
+    .src('./server/src/css/front.css', './server/src/css/themes/*.css')
+    .pipe(concat('front.css'))
     .pipe(cleanCSS({ compatibility: 'ie8' }))
     .pipe(autoprefixer({ cascade: false }))
     .pipe(gulp.dest('./server/public/dist/'));
@@ -30,6 +39,8 @@ function watch() {
   gulp.watch(cssFiles, css);
   gulp.watch(jsFiles, es);
 }
+
+const css = gulp.series(cssFront, cssChat);
 const build = gulp.series(css, es);
 
 exports.css = css;

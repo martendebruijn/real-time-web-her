@@ -4,4 +4,8 @@
   --neutral-grey: #ececec;
   --dark-accent: #5da2d5;
   --red-color: #f78888;
+  --default-padding: 15px;
+}
+* {
+  outline-color: var(--accent-color);
 }

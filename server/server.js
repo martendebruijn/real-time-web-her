@@ -4,11 +4,15 @@ const express = require('express'),
   socketio = require('socket.io'),
   path = require('path'),
   message = require('./modules/messages.js'),
-  users = require('./modules/users.js');
+  users = require('./modules/users.js'),
+  questions = require('./modules/questions.js');
+const { getRoomUsers, getCurrentUser } = require('./modules/users.js');
 
 const port = process.env.PORT || 3000,
   app = express(),
   botName = 'Admin';
+
+const userAnswers = [];
 
 app
   .use(express.static(path.join(__dirname, 'public')))
@@ -46,7 +50,6 @@ io.on('connection', (socket) => {
       );
 
     // Send users and room info
-
     io.to(user.room).emit('roomUsers', {
       room: user.room,
       users: users.getRoomUsers(user.room),
@@ -58,33 +61,115 @@ io.on('connection', (socket) => {
     const user = users.getCurrentUser(socket.id);
     io.to(user.room).emit('message', message.formatMessage(user.username, msg));
   });
+
+  // Listen for new question
+  socket.on('newQuestion', () => {
+    const user = users.getCurrentUser(socket.id),
+      cityone = questions.questions.questionone.cityone.city,
+      citytwo = questions.questions.questionone.citytwo.city;
+
+    // answer:
+    // questions.getWeather(cityone)
+    // questions.getWeather(citytwo)
+    io.to(user.room).emit(
+      'message',
+      message.formatMessage(botName, 'new question...')
+    );
+  });
   // Listen for answer
-  socket.on('answerMessage', (answer) => {
-    const user = users.getCurrentUser(socket.id);
-    if (answer.cityone) {
-      console.log('user choose city 1');
-      // TODO: add the names of the cities
-      const msg = `${user.username} heeft gekozen voor city one`;
+  socket.on('answerGiven', async (answer) => {
+    const user = users.getCurrentUser(socket.id),
+      cityone = questions.questions.questionone.cityone.city,
+      citytwo = questions.questions.questionone.citytwo.city;
+    // const tempCityOne = await questions.getWeather(cityone),
+    //   tempCityTwo = await questions.getWeather(citytwo);
+    // console.log({ tempCityOne, tempCityTwo });
+    // outcome:
+    // {
+    //   tempCityOne: { temp: 24.12, name: 'Amsterdam' },
+    //   tempCityTwo: { temp: 23.55, name: 'London' }
+    // }
+    const tempCityOne = { temp: 24.12, name: 'Amsterdam' },
+      tempCityTwo = { temp: 23.55, name: 'London' };
+    const rightAnswer = getRightAnswer(tempCityOne, tempCityTwo);
+    const index = userAnswers.findIndex((item) => item[user.room]);
+    index === -1
+      ? userAnswers.push({ [user.room]: [socket.id] })
+      : userAnswers[index][user.room].push(socket.id);
+
+    socket.emit(
+      'message',
+      message.formatMessage(botName, `Je koos voor ${answer}`)
+    );
+    socket.emit(
+      'message',
+      message.formatMessage(botName, `Het juiste antwoord was ${rightAnswer}`)
+    );
+    // Add new score
+    const userIndex = users.users.findIndex((_user) => _user.id === user.id);
+    answer === rightAnswer || rightAnswer === 'draw'
+      ? (users.users[userIndex].score = users.users[userIndex].score + 1)
+      : (users.users[userIndex].score = users.users[userIndex].score);
+
+    // Check if everyone has given an answer
+    const amountOfUsers = getRoomUsers(user.room).length;
+    const roomIndex = userAnswers.findIndex((item) => item[user.room]);
+    const amountOfAnswers = userAnswers[roomIndex][user.room].length;
+    if (amountOfUsers === amountOfAnswers) {
       io.to(user.room).emit(
         'message',
-        message.formatMessage(user.username, msg)
+        message.formatMessage(botName, 'everyone has answered')
       );
-    } else if (answer.citytwo) {
-      console.log('user choose city 2');
-      const msg = `${user.username} heeft gekozen voor city two`;
-      io.to(user.room).emit(
-        'message',
-        message.formatMessage(user.username, msg)
-      );
-    } else {
-      console.log('no answer given');
-      const msg = `${user.username} heeft gekozen voor niks`;
-      io.to(user.room).emit(
-        'message',
-        message.formatMessage(user.username, msg)
-      );
+      // Send users and room info
+      io.to(user.room).emit('roomUsers', {
+        room: user.room,
+        users: users.getRoomUsers(user.room),
+      });
     }
   });
+  function getRightAnswer(cityOne, cityTwo) {
+    const tempOne = cityOne.temp,
+      tempTwo = cityTwo.temp;
+    const cal = tempOne - tempTwo;
+    if (cal > 0) {
+      console.log('temp one is higher');
+      return 'cityone';
+    } else if (cal < 0) {
+      console.log('temp two is higher');
+      return 'citytwo';
+    } else if (cal === 0) {
+      console.log('temp one and two are the same');
+      return `draw`;
+    }
+  }
+
+  // Listen for answer
+  // socket.on('answerMessage', (answer) => {
+  //   const user = users.getCurrentUser(socket.id);
+  //   if (answer.cityone) {
+  //     console.log('user choose city 1');
+  //     // TODO: add the names of the cities
+  //     const msg = `${user.username} heeft gekozen voor city one`;
+  //     io.to(user.room).emit(
+  //       'message',
+  //       message.formatMessage(user.username, msg)
+  //     );
+  //   } else if (answer.citytwo) {
+  //     console.log('user choose city 2');
+  //     const msg = `${user.username} heeft gekozen voor city two`;
+  //     io.to(user.room).emit(
+  //       'message',
+  //       message.formatMessage(user.username, msg)
+  //     );
+  //   } else {
+  //     console.log('no answer given');
+  //     const msg = `${user.username} heeft gekozen voor niks`;
+  //     io.to(user.room).emit(
+  //       'message',
+  //       message.formatMessage(user.username, msg)
+  //     );
+  //   }
+  // });
   // Runs when client disconnects
   socket.on('disconnect', () => {
     const user = users.userLeave(socket.id);

@@ -2,6 +2,7 @@ const chatForm = document.getElementById('chat-form'),
   chatMessages = document.querySelector('.chat-messages'),
   roomName = document.getElementById('room-name'),
   userslist = document.getElementById('users'),
+  newQuestionForm = document.getElementById('newQuestionForm'),
   answerForm = document.getElementById('answer-form');
 
 const socket = io();
@@ -44,16 +45,23 @@ chatForm.addEventListener('submit', (e) => {
   msg.focus();
 });
 
-// Answer submit
+// Listen for new question
+newQuestionForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+  socket.emit('newQuestion');
+});
+
+// Listen for answer
 answerForm.addEventListener('submit', (e) => {
   e.preventDefault();
   const cityone = e.target.elements[2].checked,
     citytwo = e.target.elements[3].checked;
 
-  console.log({ cityone, citytwo });
-
-  // Emit answer to server
-  socket.emit('answerMessage', { cityone, citytwo });
+  if (cityone) {
+    socket.emit('answerGiven', 'cityone');
+  } else if (citytwo) {
+    socket.emit('answerGiven', 'citytwo');
+  }
 });
 
 // Output message to DOM
@@ -74,6 +82,14 @@ function outputMessage(message) {
   chatMessages.appendChild(div);
 }
 
+// Output question to DOM
+function outputQuestion(message) {
+  const username = message.username,
+    city = message.text,
+    time = message.time,
+    div = document.createElement('div');
+}
+
 // Output room name to DOM
 function outputRoomName(room) {
   roomName.innerText = room;
@@ -82,6 +98,9 @@ function outputRoomName(room) {
 function outputUsers(users) {
   userslist.innerHTML = `
     ${users
-      .map((user) => `<li> <p>1.</p> <h3>${user.username}</h3> <p>20</p> </li>`)
+      .map(
+        (user) =>
+          `<li> <p>1.</p> <h3>${user.username}</h3> <p>${user.score}</p> </li>`
+      )
       .join('')}`;
 }
