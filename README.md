@@ -3,6 +3,7 @@
 <!-- screenshot applicatie -->
 <!-- Table of contents -->
 <!-- Usage -->
+<!-- Live Demo -->
 <!-- Data life cycle diagram -->
 
 ## Dependencies
@@ -52,6 +53,8 @@
 <!-- Whishlist -->
 
 # Sources
+
+<!-- Categories: 📹 film -->
 
 | Cat. | Title                                                        | Author         | Origin                                                 |
 | ---- | ------------------------------------------------------------ | -------------- | ------------------------------------------------------ |
