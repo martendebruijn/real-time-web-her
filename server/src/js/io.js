@@ -31,6 +31,7 @@ socket.on('message', (message) => {
 
 // Question from server
 socket.on('question', (question) => {
+  console.log(question);
   outputQuestion(question);
 
   // Prevent submitting new question form
@@ -102,9 +103,9 @@ function outputQuestion(question) {
                 <span class="username">${username}</span>
                 <span class="time">${time}</span>
             </div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" alt="">
-            <h2 class="country">Nederland</h2>
-            <h3 class="city">Amsterdam</h3>
+            <img src="${cityOne.img}" alt="Flag of ${cityOne.city}">
+            <h2 class="country">${cityOne.country}</h2>
+            <h3 class="city">${cityOne.city}</h3>
         </label>
         <input type="radio" name="answer" id="citytwo${n}">
         <label for="citytwo${n}">
@@ -112,9 +113,9 @@ function outputQuestion(question) {
                 <span class="username">${username}</span>
                 <span class="time">${time}</span>
             </div>
-            <img src="https://upload.wikimedia.org/wikipedia/commons/2/20/Flag_of_the_Netherlands.svg" alt="">
-            <h2 class="country">Verenigd Koninkrijk</h2>
-            <h3 class="city">Londen</h3>
+            <img src="${cityTwo.img}" alt="Flag of ${cityTwo.city}">
+            <h2 class="country">${cityTwo.country}</h2>
+            <h3 class="city">${cityTwo.city}</h3>
         </label>
         <button type="submit" class="question_submit">
             <div>

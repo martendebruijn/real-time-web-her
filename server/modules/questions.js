@@ -3,14 +3,60 @@ const fetch = require('node-fetch'),
   key = process.env.KEY;
 
 const questions = {
-  questionone: {
+  question1: {
     cityone: {
       city: 'Amsterdam',
       country: 'Nederland',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
     },
     citytwo: {
       city: 'Londen',
       country: 'Verenigd Koninkrijk',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+    },
+  },
+  question2: {
+    cityone: {
+      city: 'Warschau',
+      country: 'Polen',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+    },
+    citytwo: {
+      city: 'Brussel',
+      country: 'België',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+    },
+  },
+  question3: {
+    cityone: {
+      city: 'Moskou',
+      country: 'Rusland',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+    },
+    citytwo: {
+      city: 'Tokyo',
+      country: 'Japan',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+    },
+  },
+  question4: {
+    cityone: {
+      city: 'Brasilia',
+      country: 'Brazilië',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+    },
+    citytwo: {
+      city: 'Nuuk',
+      country: 'Groenland',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
     },
   },
 };

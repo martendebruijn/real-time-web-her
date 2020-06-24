@@ -18,7 +18,7 @@ let questionCount = [
   { game: 'game3', question: 0 },
 ];
 
-// TODO: Prevent multiple submits and submits from old questions
+// TODO: submits from old questions
 
 app
   .use(express.static(path.join(__dirname, 'public')))
@@ -70,18 +70,20 @@ io.on('connection', (socket) => {
 
   // Listen for new question
   socket.on('newQuestion', () => {
-    const user = users.getCurrentUser(socket.id),
-      cityone = questions.questions.questionone.cityone.city,
-      citytwo = questions.questions.questionone.citytwo.city;
+    const user = users.getCurrentUser(socket.id);
+    const questionIndex = questionCount.findIndex(
+      (item) => item.game === user.room
+    );
+    const q = questionCount[questionIndex].question;
+
+    const cityone = questions.questions[`question${q + 1}`].cityone,
+      citytwo = questions.questions[`question${q + 1}`].citytwo;
+
     io.to(user.room).emit(
       'message',
       message.formatMessage(botName, 'new question...')
     );
 
-    const questionIndex = questionCount.findIndex(
-      (item) => item.game === user.room
-    );
-    const q = questionCount[questionIndex].question;
     io.to(user.room).emit(
       'question',
       message.formatQuestion(botName, cityone, citytwo, q)
@@ -91,9 +93,13 @@ io.on('connection', (socket) => {
 
   // Listen for answer
   socket.on('answerGiven', async (answer) => {
-    const user = users.getCurrentUser(socket.id),
-      cityone = questions.questions.questionone.cityone.city,
-      citytwo = questions.questions.questionone.citytwo.city;
+    const user = users.getCurrentUser(socket.id);
+    const questionIndex = questionCount.findIndex(
+      (item) => item.game === user.room
+    );
+    const q = questionCount[questionIndex].question;
+    const cityone = questions.questions[`question${q + 1}`].cityone.city,
+      citytwo = questions.questions[`question${q + 1}`].citytwo.city;
     // const tempCityOne = await questions.getWeather(cityone),
     //   tempCityTwo = await questions.getWeather(citytwo);
     // console.log({ tempCityOne, tempCityTwo });
@@ -160,33 +166,6 @@ io.on('connection', (socket) => {
     }
   }
 
-  // Listen for answer
-  // socket.on('answerMessage', (answer) => {
-  //   const user = users.getCurrentUser(socket.id);
-  //   if (answer.cityone) {
-  //     console.log('user choose city 1');
-  //     // TODO: add the names of the cities
-  //     const msg = `${user.username} heeft gekozen voor city one`;
-  //     io.to(user.room).emit(
-  //       'message',
-  //       message.formatMessage(user.username, msg)
-  //     );
-  //   } else if (answer.citytwo) {
-  //     console.log('user choose city 2');
-  //     const msg = `${user.username} heeft gekozen voor city two`;
-  //     io.to(user.room).emit(
-  //       'message',
-  //       message.formatMessage(user.username, msg)
-  //     );
-  //   } else {
-  //     console.log('no answer given');
-  //     const msg = `${user.username} heeft gekozen voor niks`;
-  //     io.to(user.room).emit(
-  //       'message',
-  //       message.formatMessage(user.username, msg)
-  //     );
-  //   }
-  // });
   // Runs when client disconnects
   socket.on('disconnect', () => {
     const user = users.userLeave(socket.id);
@@ -204,16 +183,3 @@ io.on('connection', (socket) => {
     }
   });
 });
-// Listen for answer
-// answerForm.addEventListener('submit', (e) => {
-//   e.preventDefault();
-//   const cityone = e.target.elements[2].checked,
-//     citytwo = e.target.elements[3].checked;
-
-//   if (cityone) {
-//     socket.emit('answerGiven', 'cityone');
-//   } else if (citytwo) {
-//     socket.emit('answerGiven', 'citytwo');
-//   }
-// });
-// answerForm = document.getElementById('answer-form');
