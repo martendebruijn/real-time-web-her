@@ -1,22 +1,17 @@
 const staticCacheName = 'site-static-v1';
 const dynamicCache = 'site-dynamic-v1';
-// const assets = [
-//   '/',
-//   '/css/styles.min.css',
-//   '/img/left-arrow.min.svg',
-//   '/fallback',
-// ];
+const assets = ['/dist/all.js', '/dist/front.js', '/dist/styles.js'];
 
-// // install service worker
-// self.addEventListener('install', evt => {
-//   evt.waitUntil(
-//     caches.open(staticCacheName).then(cache => {
-//       cache.addAll(assets);
-//     })
-//   );
-// });
+// install service worker
+self.addEventListener('install', (evt) => {
+  evt.waitUntil(
+    caches.open(staticCacheName).then((cache) => {
+      cache.addAll(assets);
+    })
+  );
+});
 
-// // activate event
+// activate event
 // self.addEventListener('activate', evt => {
 //   evt.waitUntil(
 //     caches.keys().then(keys => {
