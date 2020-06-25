@@ -23,8 +23,8 @@ A simple game application. Room based chat application maded with Socket IO. Use
 ### 1. Clone repo & install dependencies
 
 ```zsh
-git clone ....
-cd ....
+git clone https://github.com/martendebruijn/real-time-web-her.git
+cd real-time-web-her
 npm install
 ```
 
@@ -49,6 +49,12 @@ npm run dev
 
 ```zsh
 npm start
+```
+
+Open a browser and go to localHost
+
+```zsh
+localhost:3000
 ```
 
 ## Live Demo
