@@ -117,10 +117,10 @@ npm start
 | ⚙️    | Code                    |
 | 🛠    | Tool                    |
 
-| Cat. | Title                                                        | Author                                           | Origin                                                 |
-| ---- | ------------------------------------------------------------ | ------------------------------------------------ | ------------------------------------------------------ |
-| 📹    | Realtime Chat With Users & Rooms - Socket.io, Node & Express | Traversy Media                                   | [YouTube](https://www.youtube.com/watch?v=jD7FnbI76Hg) |
-| 📖    | Socket IO - Getting Started                                  | [Socket.io](https://socket.io/get-started/chat/) |
+| Cat. | Title                                                        | Author         | Origin                                                 |
+| ---- | ------------------------------------------------------------ | -------------- | ------------------------------------------------------ |
+| 📹    | Realtime Chat With Users & Rooms - Socket.io, Node & Express | Traversy Media | [YouTube](https://www.youtube.com/watch?v=jD7FnbI76Hg) |
+| 📖    | Socket IO - Getting Started                                  | -              | [Socket.io](https://socket.io/get-started/chat/)       |
 
 <br/>
 <br/>
