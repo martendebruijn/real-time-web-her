@@ -133,4 +133,4 @@ npm start
 <br/>
 <br/>
 ❤️ Thanks for reading ❤️<br/>
-❤️ Marten de Bruijn ❤️
+❤️ [Marten de Bruijn](http://martendebruijn.nl/) ❤️
