@@ -85,7 +85,7 @@ io.on('connection', (socket) => {
     console.log(`question index = ${questionIndex}`);
     console.log(`questionCount = ${questionCount}`);
     let q = questionCount[questionIndex].question;
-    if (q >= 4) {
+    if (q >= 10) {
       questionCount[questionIndex].question = 0;
       q = 0;
     }

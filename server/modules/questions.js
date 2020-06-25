@@ -59,104 +59,90 @@ const questions = {
         'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
     },
   },
-  // question5: {
-  //   cityone: {
-  //     city: 'Brasilia',
-  //     country: 'Brazilië',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
-  //   },
-  //   citytwo: {
-  //     city: 'Nuuk',
-  //     country: 'Groenland',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
-  //   },
-  // },
-  // question6: {
-  //   cityone: {
-  //     city: 'Brasilia',
-  //     country: 'Brazilië',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
-  //   },
-  //   citytwo: {
-  //     city: 'Nuuk',
-  //     country: 'Groenland',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
-  //   },
-  // },
-  // question7: {
-  //   cityone: {
-  //     city: 'Brasilia',
-  //     country: 'Brazilië',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
-  //   },
-  //   citytwo: {
-  //     city: 'Nuuk',
-  //     country: 'Groenland',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
-  //   },
-  // },
-  // question8: {
-  //   cityone: {
-  //     city: 'Brasilia',
-  //     country: 'Brazilië',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
-  //   },
-  //   citytwo: {
-  //     city: 'Nuuk',
-  //     country: 'Groenland',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
-  //   },
-  // },
-  // question9: {
-  //   cityone: {
-  //     city: 'Brasilia',
-  //     country: 'Brazilië',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
-  //   },
-  //   citytwo: {
-  //     city: 'Nuuk',
-  //     country: 'Groenland',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
-  //   },
-  // },
-  // question10: {
-  //   cityone: {
-  //     city: 'Brasilia',
-  //     country: 'Brazilië',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
-  //   },
-  //   citytwo: {
-  //     city: 'Nuuk',
-  //     country: 'Groenland',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
-  //   },
-  // },
-  // question11: {
-  //   cityone: {
-  //     city: 'Brasilia',
-  //     country: 'Brazilië',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
-  //   },
-  //   citytwo: {
-  //     city: 'Nuuk',
-  //     country: 'Groenland',
-  //     img:
-  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
-  //   },
-  // },
+  question5: {
+    cityone: {
+      city: 'Budapest',
+      country: 'Hungary',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/c/c1/Flag_of_Hungary.svg/1920px-Flag_of_Hungary.svg.png',
+    },
+    citytwo: {
+      city: 'Copenhagen',
+      country: 'Denmark',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9c/Flag_of_Denmark.svg/1280px-Flag_of_Denmark.svg.png',
+    },
+  },
+  question6: {
+    cityone: {
+      city: 'Ottawa',
+      country: 'Canada',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/d/d9/Flag_of_Canada_%28Pantone%29.svg/1920px-Flag_of_Canada_%28Pantone%29.svg.png',
+    },
+    citytwo: {
+      city: 'Paris',
+      country: 'France',
+      img:
+        'https://upload.wikimedia.org/wikipedia/en/thumb/c/c3/Flag_of_France.svg/1920px-Flag_of_France.svg.png',
+    },
+  },
+  question7: {
+    cityone: {
+      city: 'Tunis',
+      country: 'Tunisia',
+      img:
+        'https://en.wikipedia.org/wiki/Tunisia#/media/File:Flag_of_Tunisia.svg',
+    },
+    citytwo: {
+      city: 'Stockholm',
+      country: 'Sweden',
+      img:
+        'https://upload.wikimedia.org/wikipedia/en/thumb/4/4c/Flag_of_Sweden.svg/1920px-Flag_of_Sweden.svg.png',
+    },
+  },
+  question8: {
+    cityone: {
+      city: 'Sofia',
+      country: 'Bulgaria',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/Flag_of_Bulgaria.svg/800px-Flag_of_Bulgaria.svg.png',
+    },
+    citytwo: {
+      city: 'Riyadh',
+      country: 'Saudi Arabia',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/0/0d/Flag_of_Saudi_Arabia.svg/1920px-Flag_of_Saudi_Arabia.svg.png',
+    },
+  },
+  question9: {
+    cityone: {
+      city: 'Prague',
+      country: 'Czech Republic',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/c/cb/Flag_of_the_Czech_Republic.svg/1920px-Flag_of_the_Czech_Republic.svg.png',
+    },
+    citytwo: {
+      city: 'Paramibo',
+      country: 'Suriname',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/6/60/Flag_of_Suriname.svg/1920px-Flag_of_Suriname.svg.png',
+    },
+  },
+  question10: {
+    cityone: {
+      city: 'Monaco',
+      country: 'Monaco',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Flag_of_Monaco.svg/1280px-Flag_of_Monaco.svg.png',
+    },
+    citytwo: {
+      city: 'Mexico City',
+      country: 'Mexico',
+      img:
+        'https://upload.wikimedia.org/wikipedia/commons/thumb/f/fc/Flag_of_Mexico.svg/1920px-Flag_of_Mexico.svg.png',
+    },
+  },
 };
 
 async function getWeather(city) {
