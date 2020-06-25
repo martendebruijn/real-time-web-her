@@ -1,5 +1,7 @@
 # Real Time Web Herkansing
 
+<img src="https://img.shields.io/badge/PWA-This%20application%20is%20a%20PWA-blue" />
+
 ## Introduction
 A simple game application. Room based chat application maded with Socket IO. Users get asked which of two cities it is warmer in real time.
 
