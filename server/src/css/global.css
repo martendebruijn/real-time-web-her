@@ -65,7 +65,20 @@ button,
   color: var(--text-color);
   font-size: 13.3333px;
 }
-
+#newQuestionForm_submit:disabled {
+  cursor: not-allowed;
+  background: rgba(211, 211, 211, 0.5);
+  color: #ebebe4;
+}
+#newQuestionForm_submit:disabled:hover {
+  transform: none;
+}
+#newQuestionForm_submit:disabled span.material-icons {
+  background: rgba(211, 211, 211, 0.5);
+}
+section.chat div form label > div:first-of-type {
+  padding-bottom: 15px;
+}
 button span.material-icons,
 .btn span.material-icons {
   margin-left: 25px;
@@ -85,7 +98,7 @@ footer {
 .mobile {
   display: none;
 }
-@media only screen and (max-height: 812px) {
+@media only screen and (max-height: 700px) {
   .btn,
   button {
     padding: 5px;

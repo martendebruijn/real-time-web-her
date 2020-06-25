@@ -40,15 +40,17 @@ io.on('connection', (socket) => {
   socket.on('joinRoom', ({ username, room }) => {
     const user = users.userJoin(socket.id, username, room);
     socket.join(user.room);
-    console.log(room);
-    console.log(user.room);
-    console.log(questionCount);
 
     // Welcome current user
     socket.emit(
       'message',
       message.formatMessage(botName, `Welkom ${user.username}!`)
     );
+    const _amountOfUsers = users.getRoomUsers(user.room).length;
+
+    if (_amountOfUsers === 0) {
+      q = 0;
+    }
 
     // Broadcast when a user connects
     socket.broadcast
@@ -117,32 +119,61 @@ io.on('connection', (socket) => {
       (item) => item.game === user.room
     );
     const q = questionCount[questionIndex].question;
-    const cityone = questions.questions[`question${q + 1}`].cityone.city,
-      citytwo = questions.questions[`question${q + 1}`].citytwo.city;
-    // const tempCityOne = await questions.getWeather(cityone),
-    //   tempCityTwo = await questions.getWeather(citytwo);
+    const cityone = questions.questions[`question${q}`].cityone.city,
+      citytwo = questions.questions[`question${q}`].citytwo.city;
+
+    // * Use in production mode and if you need to access the API
+    const tempCityOne = await questions.getWeather(cityone),
+      tempCityTwo = await questions.getWeather(citytwo);
     // console.log({ tempCityOne, tempCityTwo });
     // outcome:
     // {
     //   tempCityOne: { temp: 24.12, name: 'Amsterdam' },
     //   tempCityTwo: { temp: 23.55, name: 'London' }
     // }
-    const tempCityOne = { temp: 24.12, name: 'Amsterdam' },
-      tempCityTwo = { temp: 23.55, name: 'London' };
+
+    // * Use when in development mode and you don't need to use the API
+    // const tempCityOne = { temp: 24.12, name: 'Amsterdam' },
+    //   tempCityTwo = { temp: 23.55, name: 'London' };
     const rightAnswer = getRightAnswer(tempCityOne, tempCityTwo);
     const index = userAnswers.findIndex((item) => item[user.room]);
     index === -1
       ? userAnswers.push({ [user.room]: [socket.id] })
       : userAnswers[index][user.room].push(socket.id);
 
+    console.log({ tempCityOne, tempCityTwo });
+
     socket.emit(
       'message',
-      message.formatMessage(botName, `Je koos voor ${answer}`)
+      message.formatMessage(
+        botName,
+        `Het is nu ${tempCityOne.temp} graden in ${cityone} en ${tempCityTwo.temp} graden in ${citytwo}.`
+      )
     );
-    socket.emit(
-      'message',
-      message.formatMessage(botName, `Het juiste antwoord was ${rightAnswer}`)
-    );
+
+    if (answer === 'cityone') {
+      socket.emit(
+        'message',
+        message.formatMessage(botName, `Je koos voor ${cityone}`)
+      );
+    } else if (answer === 'citytwo') {
+      socket.emit(
+        'message',
+        message.formatMessage(botName, `Je koos voor ${citytwo}`)
+      );
+    }
+    if (rightAnswer === 'cityone') {
+      socket.emit(
+        'message',
+        message.formatMessage(botName, `Het juiste antwoord was ${cityone}`)
+      );
+    } else if (rightAnswer === 'citytwo') {
+      socket.emit(
+        'message',
+        message.formatMessage(botName, `Het juiste antwoord was ${citytwo}`)
+      );
+    }
+
     // Add new score
     const userIndex = users.users.findIndex((_user) => _user.id === user.id);
     answer === rightAnswer || rightAnswer === 'draw'
@@ -156,13 +187,29 @@ io.on('connection', (socket) => {
     if (amountOfUsers === amountOfAnswers) {
       io.to(user.room).emit(
         'message',
-        message.formatMessage(botName, 'everyone has answered')
+        message.formatMessage(botName, 'Iedereen heeft geantwoord!')
       );
       io.to(user.room).emit('dedisable');
       // Send users and room info
+      let newLeaderboard = users.getRoomUsers(user.room);
+
+      if (newLeaderboard.length > 1) {
+        function compare(a, b) {
+          if (a.score > b.score) {
+            return -1;
+          }
+          if (a.score < b.score) {
+            return 1;
+          }
+          return 0;
+        }
+
+        newLeaderboard.sort(compare);
+      }
+
       io.to(user.room).emit('roomUsers', {
         room: user.room,
-        users: users.getRoomUsers(user.room),
+        users: newLeaderboard,
       });
       // Reset answers array for room
       userAnswers[roomIndex][user.room] = [];

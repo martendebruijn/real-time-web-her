@@ -59,6 +59,104 @@ const questions = {
         'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
     },
   },
+  // question5: {
+  //   cityone: {
+  //     city: 'Brasilia',
+  //     country: 'Brazilië',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
+  //   },
+  //   citytwo: {
+  //     city: 'Nuuk',
+  //     country: 'Groenland',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+  //   },
+  // },
+  // question6: {
+  //   cityone: {
+  //     city: 'Brasilia',
+  //     country: 'Brazilië',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
+  //   },
+  //   citytwo: {
+  //     city: 'Nuuk',
+  //     country: 'Groenland',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+  //   },
+  // },
+  // question7: {
+  //   cityone: {
+  //     city: 'Brasilia',
+  //     country: 'Brazilië',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
+  //   },
+  //   citytwo: {
+  //     city: 'Nuuk',
+  //     country: 'Groenland',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+  //   },
+  // },
+  // question8: {
+  //   cityone: {
+  //     city: 'Brasilia',
+  //     country: 'Brazilië',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
+  //   },
+  //   citytwo: {
+  //     city: 'Nuuk',
+  //     country: 'Groenland',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+  //   },
+  // },
+  // question9: {
+  //   cityone: {
+  //     city: 'Brasilia',
+  //     country: 'Brazilië',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
+  //   },
+  //   citytwo: {
+  //     city: 'Nuuk',
+  //     country: 'Groenland',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+  //   },
+  // },
+  // question10: {
+  //   cityone: {
+  //     city: 'Brasilia',
+  //     country: 'Brazilië',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
+  //   },
+  //   citytwo: {
+  //     city: 'Nuuk',
+  //     country: 'Groenland',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+  //   },
+  // },
+  // question11: {
+  //   cityone: {
+  //     city: 'Brasilia',
+  //     country: 'Brazilië',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/en/thumb/0/05/Flag_of_Brazil.svg/1440px-Flag_of_Brazil.svg.png',
+  //   },
+  //   citytwo: {
+  //     city: 'Nuuk',
+  //     country: 'Groenland',
+  //     img:
+  //       'https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/Flag_of_Greenland.svg/1920px-Flag_of_Greenland.svg.png',
+  //   },
+  // },
 };
 
 async function getWeather(city) {

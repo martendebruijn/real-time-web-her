@@ -1,12 +1,14 @@
 # Real Time Web Herkansing
 
 ## Introduction
+A simple game application. Room based chat application maded with Socket IO. Users get asked which of two cities it is warmer in real time.
 
-<!-- screenshot applicatie -->
+![Screenshot applicatie](/readme_img/screenshot-dark.png)
 
 ## Table of contents
   - [Usage](#usage)
   - [Live Demo](#live-demo)
+  - [Data Life Cycle](#data-life-cycle)
   - [Dependencies](#dependencies)
   - [NPM Scripts](#npm-scripts)
   - [Gulp tasks](#gulp-tasks)
@@ -50,6 +52,11 @@ npm start
 ```
 
 ## Live Demo
+[Live demo link](https://real-time-web-marten.herokuapp.com/)
+
+## Data Life Cycle
+
+![Data Life Cycle Diagram](/readme_img/dlc-rtw-her.png)
 
 ## Dependencies
 
@@ -94,10 +101,14 @@ npm start
 
 **Emitters**
 
+Join chatroom
+
 ```js
 // Join chatroom
 socket.emit('joinRoom', { username, room });
 ```
+
+Send chat message to server
 
 ```js
 // Message submit
@@ -116,6 +127,8 @@ chatForm.addEventListener('submit', (e) => {
 });
 ```
 
+Send request for new question to server
+
 ```js
 // Listen for new question
 newQuestionForm.addEventListener('submit', (e) => {
@@ -123,6 +136,8 @@ newQuestionForm.addEventListener('submit', (e) => {
   socket.emit('newQuestion');
 });
 ```
+
+Send the answer given by the user to the server
 
 ```js
 // Listen for answer
@@ -141,6 +156,8 @@ newQuestionForm.addEventListener('submit', (e) => {
 
 **Listeners**
 
+Listen for the users who are in the room
+
 ```js
 // Get room and users
 socket.on('roomUsers', ({ room, users }) => {
@@ -148,6 +165,9 @@ socket.on('roomUsers', ({ room, users }) => {
   outputUsers(users);
 });
 ```
+
+Listen for messages
+
 ```js
 // Message from server
 socket.on('message', (message) => {
@@ -157,6 +177,8 @@ socket.on('message', (message) => {
   chatMessages.scrollTop = chatMessages.scrollHeight;
 });
 ```
+
+Listen for questions
 
 ```js
 // Question from server
@@ -172,6 +194,8 @@ socket.on('question', (question) => {
 });
 ```
 
+Dedisable the new question button
+
 ```js
 // Dedisable new question form
 socket.on('dedisable', () => {
@@ -183,6 +207,8 @@ socket.on('dedisable', () => {
 
 **Emitters**
 
+Send welcome message to user
+
 ```js
    // Welcome current user
     socket.emit(
@@ -190,6 +216,8 @@ socket.on('dedisable', () => {
       message.formatMessage(botName, `Welkom ${user.username}!`)
     );
 ```
+
+Send message to all other users that someone has joined
 
 ```js
         // Broadcast when a user connects
@@ -203,8 +231,10 @@ socket.broadcast
         )
       );
  ```
-```js
 
+Send users in a room
+
+```js
     // Send users and room info
     io.to(user.room).emit('roomUsers', {
       room: user.room,
@@ -212,12 +242,16 @@ socket.broadcast
     });
 ```
 
+Send message that there is a new question
+
 ```js
   io.to(user.room).emit(
       'message',
       message.formatMessage(botName, 'Hier is een nieuwe vraag...')
     );
 ```
+
+Send message asking which city is warmer
 
 ```js
 
@@ -230,24 +264,60 @@ socket.broadcast
     );
 ```
 
+Send question to users
+
 ```js
    io.to(user.room).emit(
       'question',
       message.formatQuestion(botName, cityone, citytwo, q)
     );
 ```
+
+Send the current temperatures
+
 ```js
     socket.emit(
       'message',
-      message.formatMessage(botName, `Je koos voor ${answer}`)
+      message.formatMessage(
+        botName,
+        `Het is nu ${tempCityOne.temp} graden in ${cityone} en ${tempCityTwo.temp} graden in ${citytwo}.`
+      )
     );
 ```
+
+Send message telling the user which city they have chosen
+
 ```js
-socket.emit(
-      'message',
-      message.formatMessage(botName, `Het juiste antwoord was ${rightAnswer}`)
-    );
+  if (answer === 'cityone') {
+      socket.emit(
+        'message',
+        message.formatMessage(botName, `Je koos voor ${cityone}`)
+      );
+    } else if (answer === 'citytwo') {
+      socket.emit(
+        'message',
+        message.formatMessage(botName, `Je koos voor ${citytwo}`)
+      );
+    }
 ```
+
+Send the correct answer to users
+
+```js
+    if (rightAnswer === 'cityone') {
+      socket.emit(
+        'message',
+        message.formatMessage(botName, `Het juiste antwoord was ${cityone}`)
+      );
+    } else if (rightAnswer === 'citytwo') {
+      socket.emit(
+        'message',
+        message.formatMessage(botName, `Het juiste antwoord was ${citytwo}`)
+      );
+    }
+```
+
+Send message that every user has answered
 
 ```js
 io.to(user.room).emit(
@@ -256,9 +326,13 @@ io.to(user.room).emit(
       );
 ```
 
+Trigger dedisable function on the client side
+
 ```js
 io.to(user.room).emit('dedisable');
 ```
+
+Send users and room information
 
 ```js
   // Send users and room info
@@ -267,6 +341,9 @@ io.to(user.room).emit('dedisable');
         users: users.getRoomUsers(user.room),
       });
 ```
+
+Send message that a user has left to all users
+
 ```js
  io.to(user.room).emit(
         'message',
@@ -276,26 +353,40 @@ io.to(user.room).emit('dedisable');
 
 **Listeners**
 
+Function that does everything when a user connects to the server
+
 ```js
 io.on('connection', (socket) => {} )
 ```
 
+Functions that lets a user to join a room
+
 ```js
 socket.on('joinRoom', ({ username, room }) => {} )
+```
+
+Listens for chatmessages 
 
 ```js
   // Listen for chat message
   socket.on('chatMessage', (msg) => {})
-  ```
+```
+
+Listens for a request for a new question
 
   ```js
   // Listen for new question
   socket.on('newQuestion', () => {})
   ```
+
+Listen for answers given
+
   ```js
   // Listen for answer
   socket.on('anwerGiven', async (answer) => {})
   ```
+
+Listens for a user disconnects
 
   ```js
   socket.on('disconnect', () => {})
@@ -313,7 +404,10 @@ De documentatie kan men [hier](https://openweathermap.org/api) vinden.
 ## Credits
 - [Meyerweb: CSS Reset](http://meyerweb.com/eric/tools/css/reset/)
 
-<!-- ## Whishlist -->
+## Whishlist
+- [ ] Beter focus on questions
+- [ ] Make cities and countries dynamic and random
+- [ ] Prevent users with the same username to enter a room
 
 ## Sources
 
