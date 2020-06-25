@@ -1,10 +1,55 @@
 # Real Time Web Herkansing
 
+## Introduction
+
 <!-- screenshot applicatie -->
-<!-- Table of contents -->
-<!-- Usage -->
-<!-- Live Demo -->
-<!-- Data life cycle diagram -->
+
+## Table of contents
+  - [Usage](#usage)
+  - [Live Demo](#live-demo)
+  - [Dependencies](#dependencies)
+  - [NPM Scripts](#npm-scripts)
+  - [Gulp tasks](#gulp-tasks)
+  - [Socket events](#socket-events)
+  - [API](#api)
+  - [Credits](#credits)
+  - [Whishlist](#whishlist)
+  - [Sources](#sources)
+
+
+## Usage 
+### 1. Clone repo & install dependencies
+
+```zsh
+git clone ....
+cd ....
+npm install
+```
+
+### 2. Create .env file 
+Create `.env` file in the **root folder**
+Request a key here 
+
+```zsh
+KEY=<YOUR_KEY>
+
+```
+
+### 3. Run app
+
+**Development**
+
+```zsh
+npm run dev
+```
+
+**Production**
+
+```zsh
+npm start
+```
+
+## Live Demo
 
 ## Dependencies
 
@@ -45,17 +90,32 @@
 
 ## Socket events
 
-| Event             | What it does |
-| ----------------- | ------------ |
-| Event placeholder | It does this |
+| Event         | What it does |
+| ------------- | ------------ |
+| `joinRoom`    | It does this |
+| `roomUsers`   | It does this |
+| `message`     | It does this |
+| `question`    | It does this |
+| `dedisable`   | It does this |
+| `chatMessage` | It does this |
+| `newQuestion` | It does this |
+| `answerGiven` | It does this |
 
-<!-- Credits -->
-<!-- Whishlist -->
+## API
 
-# Sources
+## Credits
 
-<!-- Categories: 📹 film -->
+## Whishlist
+
+## Sources
+
+| Icon | Category                |
+| ---- | ----------------------- |
+| 📹    | Video                   |
+| 📖    | Documentation / Article |
+| ⚙️    | Code                    |
+| 🛠    | Tool                    |
 
 | Cat. | Title                                                        | Author         | Origin                                                 |
 | ---- | ------------------------------------------------------------ | -------------- | ------------------------------------------------------ |
-| 📹   | Realtime Chat With Users & Rooms - Socket.io, Node & Express | Traversy Media | [YouTube](https://www.youtube.com/watch?v=jD7FnbI76Hg) |
+| 📹    | Realtime Chat With Users & Rooms - Socket.io, Node & Express | Traversy Media | [YouTube](https://www.youtube.com/watch?v=jD7FnbI76Hg) |
