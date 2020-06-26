@@ -20,24 +20,24 @@ self.addEventListener('activate', (event) => {
   event.waitUntil(clients.claim());
 });
 
-self.addEventListener('fetch', (event) => {
-  console.log('fetch event: ', event.request);
+// self.addEventListener('fetch', (event) => {
+//   console.log('fetch event: ', event.request);
 
-  event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        console.log('Found in cache!');
-        return cachedResponse;
-      }
+//   event.respondWith(
+//     caches.match(event.request).then((cachedResponse) => {
+//       if (cachedResponse) {
+//         console.log('Found in cache!');
+//         return cachedResponse;
+//       }
 
-      return fetch(event.request).then((fetchResponse) => fetchResponse);
-      //   .catch((err => {
+//       return fetch(event.request).then((fetchResponse) => fetchResponse);
+//       //   .catch((err => {
 
-      //     const isHTMLPage = event.request.method == "GET" && event.request.headers.get("accept").includes("text/html")
+//       //     const isHTMLPage = event.request.method == "GET" && event.request.headers.get("accept").includes("text/html")
 
-      //     if(isHTMLPage) return caches.match("/offline")
+//       //     if(isHTMLPage) return caches.match("/offline")
 
-      //   }))
-    })
-  );
-});
+//       //   }))
+//     })
+//   );
+// });

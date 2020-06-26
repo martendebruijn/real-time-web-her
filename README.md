@@ -404,13 +404,67 @@ Listens for a user disconnects
   ```
 
 ## API
-Deze applicatie maakt gebruik van [de Free API van Open Weather](https://openweathermap.org/price). Om gebruik van deze API te maken heeft men een key nodig - deze kan men aanvragen op de vorige link.
+This application uses the Free version of [the Open Weather API](https://openweathermap.org/price). To use this API you have to have a key. 
 
-Van de Free API kan men het huidige weer opvragen, een 3-uur weersverwachting en basic weather maps.
+The API has a limit of 1,000 calls a day and 60 calls in a minute.
 
-De Free API heeft een restrictie van **1,000 calls per dag** en **60 calls per minuut**.
+The documentation can be found [here](https://openweathermap.org/api).
 
-De documentatie kan men [hier](https://openweathermap.org/api) vinden.
+<details><summary>GET Weather</summary>
+
+We send a GET request with the city we want to know the temperature of. We also send `units=metric` to make sure we get the temperature in Celsius. 
+
+```js
+const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`;
+```
+
+**Response:**
+```js
+{
+  coord: { lon: 5.39, lat: 52.16 },
+  weather: [ { id: 800, main: 'Clear', description: 'clear sky', icon: '01d' } ],
+  base: 'stations',
+  main: {
+    temp: 27.21,
+    feels_like: 28.18,
+    temp_min: 26.67,
+    temp_max: 28.33,
+    pressure: 1023,
+    humidity: 47
+  },
+  wind: { speed: 0.87, deg: 19 },
+  clouds: { all: 0 },
+  dt: 1592924687,
+  sys: {
+    type: 3,
+    id: 265546,
+    country: 'NL',
+    sunrise: 1592882274,
+    sunset: 1592942606
+  },
+  timezone: 7200,
+  id: 2759821,
+  name: 'Amersfoort',
+  cod: 200
+}
+```
+We only need the temperature and the name of the city. So we only return these two.
+
+```js
+async function getWeather(city) {
+  const url = `https://api.openweathermap.org/data/2.5/weather?q=${city}&units=metric&appid=${key}`;
+  const response = await fetch(url);
+  const data = await response.json();
+  const temp = data.main.temp,
+    name = data.name;
+  return { temp, name };
+}
+
+// outcome:
+{ temp: 27.21, name: 'Amersfoort' }
+```
+
+</details>
 
 ## Credits
 - [Meyerweb: CSS Reset](http://meyerweb.com/eric/tools/css/reset/)

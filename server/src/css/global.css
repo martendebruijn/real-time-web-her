@@ -98,7 +98,7 @@ footer {
 .mobile {
   display: none;
 }
-@media only screen and (max-height: 700px) {
+@media only screen and (max-width: 500px) {
   .btn,
   button {
     padding: 5px;
